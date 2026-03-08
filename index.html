@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NES 旗艦訂餐系統 - 全功能自動化版</title>
+    <style>
+        :root { --primary: #d32f2f; --secondary: #ffcc00; --admin: #4a148c; --dark: #263238; --bg: #f4f7f9; --wallet: #0288d1; --debt: #e65100; --record: #00796b; }
+        body { font-family: "Microsoft JhengHei", sans-serif; background: var(--bg); margin: 0; padding: 10px; padding-bottom: 80px; }
+        .header { display: flex; align-items: center; justify-content: space-between; background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 15px; }
+        .nes-logo { width: 35px; height: 35px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid var(--secondary); }
+        .view-section { display: none; max-width: 1200px; margin: auto; }
+        .card { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .module-card { background: #fff; padding: 25px 10px; border-radius: 15px; text-align: center; cursor: pointer; border-bottom: 5px solid transparent; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .m1 { border-color: #42a5f5; } .m2 { border-color: #66bb6a; } .m3 { border-color: #ffa726; } .m4 { border-color: #ab47bc; } .m5 { border-color: var(--wallet); } .m6 { border-color: var(--record); grid-column: span 2; }
+        input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 12px; box-sizing: border-box; }
+        .btn-confirm { background: var(--admin); color: #fff; width: 100%; padding: 14px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .btn-back { background: #999; color: #fff; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.8em; }
+        th, td { border-bottom: 1px solid #eee; padding: 10px 5px; text-align: left; }
+        th { background: #f8f9fa; }
+        .footer-submit { position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); color: #fff; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; z-index: 2000; }
+        #loadingOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
+        .rem-box { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; font-size: 0.9em; cursor: pointer; }
+        .rem-box input { width: auto; margin: 0; }
+    </style>
+</head>
+<body>
+
+<div id="loadingOverlay"><div class="nes-logo" style="width:60px; height:60px; font-size:1.5em; margin-bottom:15px;">NES</div><div>同步雲端資料中...</div></div>
+
+<div class="header">
+    <div style="display:flex; align-items:center; gap:8px;"><div class="nes-logo">NES</div><h1 style="margin:0; font-size:1.1em;">旗艦訂餐系統</h1></div>
+    <div id="loginStatus" style="font-size:0.9em; font-weight:bold; color:var(--admin);"></div>
+</div>
+
+<div id="loginView" class="view-section">
+    <div class="card" style="max-width:400px; margin:auto; text-align:center;">
+        <h3>員工登入 / 申請</h3>
+        <input type="text" id="acc" placeholder="員工編號 (A)">
+        <input type="password" id="pwd" placeholder="登入密碼 (J)">
+        <label class="rem-box"><input type="checkbox" id="remMe"> 記住帳號密碼</label>
+        <button class="btn-confirm" onclick="autoAuth()">進入系統</button>
+    </div>
+</div>
+
+<div id="regView" class="view-section">
+    <div class="card" style="max-width:500px; margin:auto;">
+        <h3>新帳號申請表</h3>
+        <label>A. 員工編號</label><input type="text" id="regA" readonly style="background:#f0f0f0;">
+        <label>B. 員工姓名</label><input type="text" id="regB" placeholder="輸入姓名">
+        <label>G. 部門名稱</label><input type="text" id="regG" placeholder="輸入部門">
+        <label>I. 帳號類別</label><select id="regI"><option value="一般成員">一般成員</option><option value="儲值管理員">儲值管理員</option></select>
+        <label>J. 登入密碼</label><input type="password" id="regJ" placeholder="設定密碼">
+        <button class="btn-confirm" onclick="submitReg()">確認提交</button>
+    </div>
+</div>
+
+<div id="homeView" class="view-section">
+    <div class="card" style="background:var(--wallet); color:white;">
+        <div style="display:flex; justify-content:space-between;">
+            <div>👤 <b id="uName"></b> | <span id="uRole"></span><br><small id="uDept"></small></div>
+            <button onclick="openView('pwdView')" style="background:rgba(255,255,255,0.2); color:white; border:none; padding:5px; border-radius:5px; font-size:0.7em;">修改密碼</button>
+        </div>
+        <div id="myWalletList" style="font-size:0.9em; margin-top:10px; background:rgba(0,0,0,0.1); padding:10px; border-radius:8px;">載入餘額...</div>
+    </div>
+    <div class="home-grid">
+        <div class="module-card m1" onclick="openView('adminView')">📢<br><h3>發起開團</h3></div>
+        <div class="module-card m2" onclick="openView('listView')">📜<br><h3>我要跟團</h3></div>
+        <div class="module-card m3" onclick="openView('statsView')">💰<br><h3>記帳與欠款</h3></div>
+        <div class="module-card m4" onclick="openView('cartView')">🛒<br><h3>購物車</h3></div>
+        <div class="module-card m5" onclick="openView('topupView')">💳<br><h3>儲值系統</h3></div>
+        <div class="module-card m6" onclick="openView('historyView')">📊<br><h3>跟團紀錄 (Excel 頁面)</h3></div>
+    </div>
+    <button onclick="logout()" style="width:100%; padding:12px; margin-top:20px; border-radius:10px; background:#fff; border:1px solid #ccc;">登出系統</button>
+</div>
+
+<div id="historyView" class="view-section">
+    <button class="btn-back" onclick="openView('homeView')">⬅ 返回首頁</button>
+    <div class="card">
+        <h3>📊 跟團紀錄總表 (自動同步)</h3>
+        <div style="overflow-x:auto;">
+            <table id="historyTable">
+                <thead>
+                    <tr><th>A.單號</th><th>B.帳號</th><th>C.開團人</th><th>D.跟團人</th><th>E.規格</th><th>F.數量</th><th>G.金額</th><th>H.繳款</th><th>I.取消</th></tr>
+                </thead>
+                <tbody id="historyBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="pwdView" class="view-section"><div class="card"><h3>修改密碼</h3><input type="password" id="oldP" placeholder="舊密碼"><input type="password" id="newP" placeholder="新密碼"><button class="btn-confirm" onclick="changePwd()">確認</button></div></div>
+<div id="statsView" class="view-section"><button class="btn-back" onclick="openView('homeView')">⬅</button><div class="card"><h3>雲端歷史清單 (A-G)</h3><div style="overflow-x:auto;"><table><thead><tr><th>員編</th><th>姓名</th><th>金額</th><th>管理員</th><th>日期</th><th>單號</th></tr></thead><tbody id="cloudLogBody"></tbody></table></div></div></div>
+<div id="adminView" class="view-section"><button class="btn-back" onclick="openView('homeView')">⬅</button><div class="card"><select id="typeSelect" onchange="updateShopList()"><option value="餐點類">餐點類</option><option value="茶飲類">茶飲類</option></select><select id="shopSelect"></select><input type="time" id="endTime" value="10:30"><button class="btn-confirm" onclick="createGroup()">發布開團</button></div></div>
+<div id="listView" class="view-section"><button class="btn-back" onclick="openView('homeView')">⬅</button><div id="activeGroupsArea"></div></div>
+<div id="menuView" class="view-section"><button class="btn-back" onclick="openView('listView')">⬅</button><h3 id="refShopName"></h3><div id="menuBoard"></div></div>
+<div id="cartView" class="view-section"><button class="btn-back" onclick="openView('homeView')">⬅</button><div id="cartListArea"></div></div>
+<div id="topupView" class="view-section"><button class="btn-back" onclick="openView('homeView')">⬅</button><div class="card" id="adminTopupBox" style="display:none;"><input type="text" id="topupUser" placeholder="員編"><input type="number" id="topupAmt" placeholder="金額"><button class="btn-confirm" onclick="doTopup()">儲值</button></div><table id="assetTable"><thead><tr><th>員工</th><th>管理員</th><th>餘額</th></tr></thead><tbody id="assetTableBody"></tbody></table></div>
+
+<div id="menuFooter" class="footer-submit" style="display:none;"><div>合計: $<span id="footerPrice">0</span></div><button onclick="submitOrder()">送出訂單</button></div>
+
+<script>
+const urls = {
+    meals: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRI748OnIPCUz-Wq2hV7eOsSu9bGYz4fvJvt02S2ibRabk2LVSbGK7yYl8wyLawmXRqGKrsKn_kbGh4/pub?gid=0&single=true&output=csv",
+    drinks: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRI748OnIPCUz-Wq2hV7eOsSu9bGYz4fvJvt02S2ibRabk2LVSbGK7yYl8wyLawmXRqGKrsKn_kbGh4/pub?gid=914702724&single=true&output=csv",
+    accounting: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRI748OnIPCUz-Wq2hV7eOsSu9bGYz4fvJvt02S2ibRabk2LVSbGK7yYl8wyLawmXRqGKrsKn_kbGh4/pub?gid=1402148524&single=true&output=csv"
+};
+
+let menuDb = [], cloudLogs = [];
+let nesSys = JSON.parse(localStorage.getItem('nes_pro_db')) || { 
+    users: {"admin": {name:"管理員", type:"儲值管理員", dept:"系統", pwd:"1234"}}, 
+    wallets: {}, groups: [], orders: [] 
+};
+let currentUser = null, currentCart = { items: {}, groupId: null };
+
+async function init() {
+    try {
+        const [m, d, a] = await Promise.all([fetch(urls.meals), fetch(urls.drinks), fetch(urls.accounting)]);
+        parseMenu(await m.text()); parseDrink(await d.text());
+        cloudLogs = (await a.text()).split('\n').slice(1).map(r => r.split(',')).filter(c => c.length >= 7);
+        const sA = localStorage.getItem('nes_rem_a'), sP = localStorage.getItem('nes_rem_p');
+        if(sA && sP) { document.getElementById('acc').value = sA; document.getElementById('pwd').value = sP; document.getElementById('remMe').checked = true; }
+        document.getElementById('loadingOverlay').style.display = 'none';
+        openView('loginView');
+    } catch (e) { alert("雲端同步異常"); }
+}
+
+function autoAuth() {
+    const a = document.getElementById('acc').value, p = document.getElementById('pwd').value;
+    if(!a) return alert("輸入員編");
+    if (nesSys.users[a]) {
+        if (nesSys.users[a].pwd === p) {
+            currentUser = a;
+            if(document.getElementById('remMe').checked) { localStorage.setItem('nes_rem_a', a); localStorage.setItem('nes_rem_p', p); }
+            else { localStorage.removeItem('nes_rem_a'); localStorage.removeItem('nes_rem_p'); }
+            openView('homeView');
+        } else alert("密碼錯誤");
+    } else {
+        alert("自動跳轉申請頁面"); document.getElementById('regA').value = a; document.getElementById('regJ').value = p; openView('regView');
+    }
+}
+
+function submitReg() {
+    const a = document.getElementById('regA').value, b = document.getElementById('regB').value, g = document.getElementById('regG').value, i = document.getElementById('regI').value, j = document.getElementById('regJ').value;
+    nesSys.users[a] = { name: b, dept: g, type: i, pwd: j }; save(); openView('loginView');
+}
+
+function submitOrder() {
+    const g = nesSys.groups.find(x => x.id === currentCart.groupId), t = parseInt(document.getElementById('footerPrice').innerText);
+    if(t <= 0) return alert("未選餐");
+    let paid = (nesSys.wallets[currentUser] && nesSys.wallets[currentUser][g.creator] >= t);
+    if(!confirm(`確認訂單：$${t}\n方式：${paid?'儲值扣帳':'現金支付'}`)) return;
+    if(paid) nesSys.wallets[currentUser][g.creator] -= t;
+    
+    // 自動加入跟團紀錄
+    const orderItems = Object.values(currentCart.items).filter(i => i.q > 0);
+    orderItems.forEach(item => {
+        nesSys.orders.push({
+            sn: g.sn, creatorAcc: g.creator, creatorName: nesSys.users[g.creator].name, 
+            userName: nesSys.users[currentUser].name, spec: item.n, qty: item.q, 
+            price: item.p * item.q, isPaid: paid ? '已繳' : '未繳', isCancel: '否', id: Date.now() + Math.random()
+        });
+    });
+    save(); alert("下單成功"); openView('homeView');
+}
+
+function renderHistory() {
+    document.getElementById('historyBody').innerHTML = nesSys.orders.map(o => `
+        <tr style="${o.isCancel === '是' ? 'text-decoration:line-through; color:gray;' : ''}">
+            <td>${o.sn}</td><td>${o.creatorAcc}</td><td>${o.creatorName}</td><td>${o.userName}</td>
+            <td>${o.spec}</td><td>${o.qty}</td><td>$${o.price}</td><td>${o.isPaid}</td><td>${o.isCancel}</td>
+        </tr>
+    `).reverse().join('') || "<tr><td colspan='9'>尚無紀錄</td></tr>";
+}
+
+function openView(id, param) {
+    document.querySelectorAll('.view-section').forEach(v => v.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    if(id==='homeView') { const u = nesSys.users[currentUser]; document.getElementById('uName').innerText = u.name; document.getElementById('uRole').innerText = u.type; document.getElementById('uDept').innerText = u.dept; renderWallets(); }
+    if(id==='historyView') renderHistory();
+    if(id==='statsView') renderCloudLogs();
+    if(id==='topupView') renderAssetTable();
+    if(id==='adminView') updateShopList();
+    if(id==='listView') renderGroups();
+    if(id==='menuView') { currentCart.groupId = param; currentCart.items = {}; renderMenu(param); document.getElementById('menuFooter').style.display = 'flex'; }
+    else if(document.getElementById('menuFooter')) document.getElementById('menuFooter').style.display = 'none';
+}
+
+// 基礎功能 (CSV 解析、儲值、密碼修改等)
+function parseMenu(csv) { csv.split('\n').slice(1).forEach(r => { const c = r.split(','); if(c.length >= 6) { let s = menuDb.find(x => x.shop === c[2].trim()); if(!s) { s = {shop:c[2].trim(), type:c[5].trim(), items:[]}; menuDb.push(s); } s.items.push({n:c[3].trim(), p:parseInt(c[4].trim())||0}); } }); }
+function parseDrink(csv) { csv.split('\n').slice(1).forEach(r => { const c = r.split(','); if(c.length >= 5) { let s = menuDb.find(x => x.shop === c[2].trim()); if(!s) { s = {shop:c[2].trim(), type:"茶飲類", items:[]}; menuDb.push(s); } s.items.push({n:c[3].trim(), p:parseInt(c[4].trim())||0}); } }); }
+function save() { localStorage.setItem('nes_pro_db', JSON.stringify(nesSys)); }
+function renderWallets() { const w = nesSys.wallets[currentUser] || {}; let h = ""; for(let adm in w) if(w[adm]>0) h += `• ${adm}: $${w[adm]}<br>`; document.getElementById('myWalletList').innerHTML = h || "無餘額"; }
+function changePwd() { if(nesSys.users[currentUser].pwd !== document.getElementById('oldP').value) return alert("舊密碼錯誤"); nesSys.users[currentUser].pwd = document.getElementById('newP').value; save(); alert("已修改"); openView('homeView'); }
+function renderAssetTable() { const isAdmin = nesSys.users[currentUser].type === '儲值管理員'; document.getElementById('adminTopupBox').style.display = isAdmin ? 'block' : 'none'; let h = ""; for(let u in nesSys.wallets) for(let adm in nesSys.wallets[u]) h += `<tr><td>${u}</td><td>${adm}</td><td>$${nesSys.wallets[u][adm]}</td></tr>`; document.getElementById('assetTableBody').innerHTML = h; }
+function doTopup() { const u = document.getElementById('topupUser').value; if(!nesSys.wallets[u]) nesSys.wallets[u] = {}; nesSys.wallets[u][currentUser] = (nesSys.wallets[u][currentUser]||0) + parseInt(document.getElementById('topupAmt').value); save(); renderAssetTable(); }
+function updateShopList() { const t = document.getElementById('typeSelect').value; const shops = [...new Set(menuDb.filter(m => m.type === t).map(m => m.shop))]; document.getElementById('shopSelect').innerHTML = shops.map(s => `<option value="${s}">${s}</option>`).join(''); }
+function createGroup() { nesSys.groups.push({id:Date.now(), sn:'G'+Date.now().toString().slice(-4), creator:currentUser, shop:document.getElementById('shopSelect').value, endTime:document.getElementById('endTime').value}); save(); openView('listView'); }
+function renderGroups() { document.getElementById('activeGroupsArea').innerHTML = nesSys.groups.map(g => `<div class="card" onclick="openView('menuView', ${g.id})"><b>${g.shop}</b> (主揪: ${g.creator})</div>`).join(''); }
+function renderMenu(gid) { const g = nesSys.groups.find(x => x.id === gid), shop = menuDb.find(m => m.shop === g.shop); document.getElementById('refShopName').innerText = g.shop; document.getElementById('menuBoard').innerHTML = shop.items.map(i => `<div style="display:flex; justify-content:space-between; padding:10px 0;"><span>${i.n}($${i.p})</span><button onclick="changeQty('${i.n}', ${i.p}, 1)">+</button></div>`).join(''); }
+function changeQty(n, p, d) { if(!currentCart.items[n]) currentCart.items[n] = {n, p, q:0}; currentCart.items[n].q += d; let t = 0; for(let k in currentCart.items) t += currentCart.items[k].p * currentCart.items[k].q; document.getElementById('footerPrice').innerText = t; }
+function renderCloudLogs() { document.getElementById('cloudLogBody').innerHTML = cloudLogs.map(c => `<tr><td>${c[0]}<br>${c[1]}</td><td>$${c[2]}</td><td>${c[3]}</td><td>${c[4]||''}<br>${c[5]||''}</td><td>${c[6]}</td></tr>`).join(''); }
+function renderStats() { document.getElementById('debtListArea').innerHTML = nesSys.orders.filter(o => o.isPaid === '未繳' && o.isCancel === '否').map(o => `<div>${o.userName} 欠 $${o.price} <button onclick="cfPaid('${o.id}')">核銷</button></div>`).join('') || "✅ 無欠款"; }
+function cfPaid(oid) { const o = nesSys.orders.find(x => x.id == oid); o.isPaid = '已繳'; save(); renderStats(); }
+function renderCart() { const my = nesSys.orders.filter(o => o.userName === nesSys.users[currentUser].name); document.getElementById('cartListArea').innerHTML = my.map(o => `<div class="card">${o.spec} - $${o.price} (${o.isCancel==='是'?'已取消':o.isPaid}) <button onclick="cancelO('${o.id}')">取消</button></div>`).reverse().join(''); }
+function cancelO(oid) { if(!confirm("取消？")) return; const o = nesSys.orders.find(x => x.id == oid); if(o.isPaid==='已繳') nesSys.wallets[currentUser][o.creatorAcc] += o.price; o.isCancel = '是'; save(); renderCart(); }
+function logout() { currentUser = null; location.reload(); }
+window.onload = init;
+</script>
+</body>
+</html>
