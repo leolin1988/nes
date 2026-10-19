@@ -1,0 +1,8 @@
+.power-check-toolbar{display:flex;justify-content:flex-start;align-items:center;width:100%;margin:0 0 12px;flex:0 0 auto}
+.power-check-action{display:inline-flex;align-items:center;justify-content:center;width:44px;height:48px;min-width:44px;padding:0;border:0;border-radius:50%;background:transparent;box-shadow:none;cursor:pointer;flex:0 0 auto}
+.power-check-action img{display:block;width:40px;height:46px;object-fit:contain;pointer-events:none}
+.power-check-action:hover:not(:disabled){filter:brightness(.85)}
+.power-check-action:focus-visible{outline:3px solid #247ab7;outline-offset:3px}
+.power-check-action:disabled{opacity:.3;cursor:not-allowed}
+.dialog-body>.power-check-toolbar{position:sticky;top:0;z-index:3}
+@media print{.power-check-toolbar{display:none!important}}

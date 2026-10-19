@@ -1,0 +1,30 @@
+.fire-form-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.fire-form-tabs button{border:1px solid #a8b9c6;background:#fff;color:#243b4d;border-radius:6px;padding:10px 13px;font:inherit;font-weight:700;cursor:pointer}
+.fire-form-tabs button.active{background:#15587b;border-color:#15587b;color:#fff}
+.fire-form-tabs button:hover{border-color:#15587b}
+.fire-attachment-sheet .fire-grid .matrix{min-width:960px}
+.fire-attachment-sheet .fire-grid .matrix th:first-child,.fire-attachment-sheet .fire-grid .matrix td:first-child{width:58px}
+.fire-attachment-sheet .fire-grid .matrix th:last-child,.fire-attachment-sheet .fire-grid .matrix td:last-child{width:200px}
+.fire-attachment-sheet .fire-grid .matrix th:nth-last-child(2),.fire-attachment-sheet .fire-grid .matrix td:nth-last-child(2){width:125px}
+.fire-attachment-sheet .fire-grid .matrix td.fire-attachment-criterion{text-align:left;white-space:pre-line;line-height:1.5;font-size:13px}
+.fire-attachment-sheet .fire-grid .matrix td.fire-attachment-equipment{width:160px;text-align:left;font-weight:700}
+.fire-attachment-sheet .fire-grid .matrix td.fire-attachment-number{text-align:center}
+.fire-attachment-sheet .fire-grid .matrix td textarea{width:100%;min-height:68px}
+.fire-attachment-report{display:block;padding:10px;border:1px solid #87949e;border-top:0;font-weight:700}
+.fire-attachment-report textarea{width:100%;min-height:75px;margin-top:8px;padding:8px;border:1px solid #a5b2bc;font:inherit}
+.fire-attachment-signoffs{display:grid;grid-template-columns:1fr 1fr;border:1px solid #87949e;border-top:0}
+.fire-attachment-signoffs section:first-child{border-right:1px solid #87949e}
+.fire-attachment-signoffs h3{margin:0;padding:10px;background:#eaf0f4;text-align:center;font-size:15px;border-bottom:1px solid #87949e}
+.fire-attachment-signoffs section>div{min-height:115px;padding:10px}
+.fire-attachment-signoffs label{display:block;margin-bottom:9px;font-weight:600}
+.fire-attachment-signoffs input,.fire-attachment-signoffs textarea{display:block;width:100%;padding:7px;border:1px solid #a5b2bc;border-radius:2px;font:inherit}
+.fire-attachment-signoffs textarea{min-height:55px}
+.fire-approval-history h2{margin:0 0 10px;color:#173a50}
+.fire-approval-history h2 small{font-size:.65em;font-weight:500;color:#526b7a}
+.fire-history-filters{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.fire-history-filters label{display:grid;gap:5px;min-width:150px;font-weight:600}
+.fire-history-filters label:last-child{min-width:210px;flex:1}
+.fire-history-count{margin:0 0 10px;color:#526b7a}
+.fire-approval-history .matrix{min-width:1050px}
+.fire-approval-history .matrix td{vertical-align:top}
+@media(max-width:720px){.fire-attachment-signoffs{grid-template-columns:1fr}.fire-attachment-signoffs section:first-child{border-right:0;border-bottom:1px solid #87949e}.fire-form-tabs button{width:100%;text-align:left}}
