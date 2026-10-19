@@ -1,6 +1,6 @@
 # 設備數位點檢系統
 
-網站程式碼備份，與儲存庫原有訂餐系統分開保存。
+設備數位點檢系統程式碼備份，保留目前全部系統功能。
 
 - 前台：dist/（HTML、JavaScript、CSS 與圖示）。
 - 後台：backend/ 內的 TypeScript，Supabase Edge Function。
