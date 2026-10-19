@@ -1,0 +1,14 @@
+@media screen and (min-width:901px){
+ .layout.sidebar-resizable{grid-template-columns:var(--sidebar-width,340px) 10px minmax(0,1fr)}
+ .layout.sidebar-resizable>.side{grid-column:1;grid-row:1;border-right:0}
+ .layout.sidebar-resizable>.main{grid-column:3;grid-row:1;min-width:0;margin-block:0;align-self:start}
+ .sidebar-resize-handle{grid-column:2;grid-row:1;align-self:stretch;position:relative;background:var(--line,#d8e2ea);cursor:col-resize;touch-action:none;outline-offset:-2px;min-height:100%;transition:background .12s}
+ .sidebar-resize-handle::before{content:'';display:block;position:sticky;top:45vh;margin:0 auto;width:4px;height:36px;border-radius:4px;background:var(--muted,#637384);opacity:.6}
+ .sidebar-resize-handle:hover,.sidebar-resize-handle:focus-visible{background:var(--blue,#1d5f94)}
+ .sidebar-resize-handle:focus-visible{outline:2px solid var(--ink,#15263a)}
+ body.resizing-sidebar,body.resizing-sidebar *{cursor:col-resize!important;user-select:none!important}
+}
+.sidebar-resize-handle[hidden]{display:none!important}
+@media(max-width:900px){.sidebar-resize-handle{display:none!important}}
+@media print{.sidebar-resize-handle{display:none!important}}
+

@@ -1,0 +1,109 @@
+.scrap-page{min-width:0}.sc-toolbar{align-items:end}.sc-toolbar label,.sc-meta label{display:flex;flex-direction:column;gap:6px}.sc-tabs{margin:16px 0}.sc-tabs .btn{white-space:normal}.sc-scroll{overflow:auto;max-width:100%}.sc-table{width:100%;border-collapse:collapse;table-layout:fixed;color:#111;background:#fff}.sc-table td,.sc-table th{border:1px solid #111!important;padding:7px;white-space:normal;overflow-wrap:anywhere;color:#111;background:#fff!important;text-align:center;vertical-align:middle}.sc-table th{font-weight:700}.sc-entry{min-width:1560px;table-layout:auto}.sc-entry td{min-width:130px}.sc-entry td:nth-child(3){min-width:220px}.sc-entry input,.sc-entry select{width:100%;min-width:90px}.sc-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:16px 0}.sc-paper{background:#fff;color:#111;padding:22px;margin:20px 0;max-width:100%;overflow:auto}.sc-sheet-head{display:grid;grid-template-columns:170px minmax(160px,1fr) 210px;align-items:center;gap:20px}.sc-sheet-head img{width:150px}.sc-sheet-head h2{text-align:center}.sc-sheet-head>div{text-align:right}.sc-blank{height:36px}.sc-sign{height:75px}.sc-bottom{margin-top:14px}.sc-sign-note{font-size:.9em}.sc-detail h2{text-align:center}.sc-panels{display:grid;grid-template-columns:repeat(3,minmax(300px,1fr));gap:12px;align-items:start;min-width:940px}.sc-panel{break-inside:avoid}.sc-panel h3{min-height:125px;text-align:center;font-size:1em;font-weight:700;margin:0;padding:12px;border:1px solid #111;border-bottom:0}.sc-panel p{border:1px solid #111;border-top:0;margin:0;padding:8px;overflow-wrap:anywhere}.sc-mismatch{padding:20px;border:2px solid #111;margin-top:20px}.sc-application{min-width:850px}.scrap-page:has(.sc-application),.scrap-page:has(.sc-detail){overflow:auto}.main:has(.scrap-page){min-width:0}.sc-table .select{max-width:100%;background:#fff;color:#111}
+@media(max-width:760px){.sc-toolbar label{width:100%}.sc-toolbar .select{max-width:100%}.sc-tabs{gap:8px}.sc-meta{grid-template-columns:1fr}.sc-paper{padding:10px}.sc-tabs .btn{flex:1 1 45%}.sc-table .btn{white-space:normal}}
+@media print{body.printing-scrap .topbar,body.printing-scrap .side,body.printing-scrap .page-title,body.printing-scrap .scrap-page>.notice,body.printing-scrap .sc-toolbar,body.printing-scrap .sc-tabs,body.printing-scrap #scMessage,body.printing-scrap #toast{display:none!important}body.printing-scrap .layout,body.printing-scrap .main,body.printing-scrap .scrap-page{display:block!important;width:100%;max-width:none;margin:0;padding:0;overflow:visible}body.printing-scrap .sc-paper{page:scrap-sheet;min-width:0;overflow:visible;margin:0;padding:0;break-after:page}body.printing-scrap .sc-application{zoom:.65}body.printing-scrap .sc-detail{zoom:.85}body.printing-scrap .sc-panels{min-width:0;grid-template-columns:repeat(3,minmax(0,1fr))}body.printing-scrap .sc-table a{display:none}body.printing-scrap .sc-table tr{break-inside:avoid}@page{size:A3 landscape;margin:8mm}@page scrap-sheet{size:A4 landscape;margin:8mm}}
+
+.sc-panel .sc-table td{white-space:nowrap;overflow-wrap:normal}.sc-panel .sc-table th{word-break:normal}.sc-table a{display:inline-block;margin-top:6px;font-size:.9em}
+.sc-summary-table{min-width:1700px;table-layout:auto}.sc-summary-table th,.sc-summary-table td{min-width:90px}.sc-summary-totals{min-width:800px}.sc-summary{overflow:auto}.sc-summary .sc-sheet-head{min-width:740px}
+@media print{body.printing-scrap .sc-summary{zoom:.65;break-after:auto}body.printing-scrap .sc-summary .sc-scroll{overflow:visible}body.printing-scrap .sc-summary-table{min-width:0;table-layout:fixed}body.printing-scrap .sc-summary-table th,body.printing-scrap .sc-summary-table td{min-width:0;font-size:10pt}body.printing-scrap .sc-summary-table thead{display:table-header-group}body.printing-scrap .sc-summary-totals{min-width:0}}
+
+.sc-combined-table{table-layout:auto}.sc-combined-table th:first-child{width:38px}.sc-combined-meta{margin-bottom:12px}.sc-consolidated h3{margin:12px 0 6px}.sc-panel h3{min-height:86px}.sc-panel .sc-blank{height:24px}
+@media print{body.printing-scrap .sc-consolidated{zoom:.65;break-after:auto}body.printing-scrap .sc-consolidated .sc-table{font-size:12pt;table-layout:fixed}body.printing-scrap .sc-consolidated .sc-table td,body.printing-scrap .sc-consolidated .sc-table th{padding:4px}body.printing-scrap .sc-consolidated thead{display:table-header-group}body.printing-scrap .sc-consolidated .sc-sign{height:80px}body.printing-scrap .sc-detail .sc-table{font-size:9pt}body.printing-scrap .sc-detail .sc-panel h3{min-height:62px;padding:6px}body.printing-scrap .sc-detail .sc-table td,body.printing-scrap .sc-detail .sc-table th{padding:4px}body.printing-scrap .sc-detail .sc-panel p{font-size:9pt}body.printing-scrap .sc-mismatch{padding:8px;margin-top:10px;font-size:9pt}}
+.sc-consolidated .sc-item-cell{text-align:left}.sc-consolidated .sc-application-meta{margin:8px 0}.sc-consolidated .sc-bottom{margin-top:8px}.sc-consolidated .sc-sign{height:90px}
+@media print{body.printing-scrap .sc-consolidated .sc-sheet-head{gap:8px}body.printing-scrap .sc-consolidated .sc-sheet-head h2{margin:6px 0}body.printing-scrap .sc-consolidated .sc-bottom{break-inside:avoid}body.printing-scrap .sc-consolidated .sc-sign-note{margin:4px 0}}
+
+.sc-combined-table{table-layout:fixed}.sc-form-code{text-align:right;font-size:12px;margin-top:8px}.sc-welfare-print{display:none}
+@media print{body.printing-scrap .sc-screen-only,body.printing-scrap .sc-welfare-select{display:none!important}body.printing-scrap .sc-welfare-print{display:inline}body.printing-scrap .sc-form-code{text-align:right;break-inside:avoid;font-size:10pt;margin:6px 0 0}}
+
+.sc-panel .sc-table .sc-detail-note{white-space:normal;overflow-wrap:anywhere;text-align:left}
+@media print{body.printing-scrap #scPeriodNotice{display:none!important}}
+
+.sc-summary-table th:nth-child(12),.sc-summary-table td:nth-child(12){min-width:180px;width:180px}.sc-summary .sc-table td.sc-money{white-space:nowrap;overflow-wrap:normal;word-break:normal;text-align:right;font-variant-numeric:tabular-nums}
+/* Compact application print layout: keep source text and all signature fields. */
+@media print{
+ body.printing-scrap .sc-consolidated{page:scrap-application;zoom:.7;font-size:11pt!important;line-height:1.15}
+ body.printing-scrap .sc-consolidated .sc-table{font-size:11pt!important;line-height:1.15}
+ body.printing-scrap .sc-consolidated .secondary-note{font-size:9pt!important;line-height:1.1}
+ body.printing-scrap .sc-consolidated .sc-combined-table thead .secondary-note{display:none}
+ body.printing-scrap .sc-consolidated .sc-table td,body.printing-scrap .sc-consolidated .sc-table th{padding:3px 4px}
+ body.printing-scrap .sc-consolidated .sc-sheet-head{grid-template-columns:110px minmax(0,1fr) 150px;gap:6px;margin:0 0 5px}
+ body.printing-scrap .sc-consolidated .sc-sheet-head img{width:100px;max-height:36px;object-fit:contain}
+ body.printing-scrap .sc-consolidated .sc-sheet-head h2{font-size:14pt!important;line-height:1.15;margin:3px 0}
+ body.printing-scrap .sc-consolidated .sc-application-meta{margin:4px 0}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(1){width:3%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(2){width:11%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(3){width:11%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(4){width:7%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(5){width:3%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(6){width:7%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(7){width:9%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(8){width:15%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(9){width:28%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(10){width:6%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table td:nth-child(4),body.printing-scrap .sc-consolidated .sc-combined-table td:nth-child(6),body.printing-scrap .sc-consolidated .sc-combined-table td:nth-child(7){font-variant-numeric:tabular-nums;white-space:nowrap;overflow-wrap:normal}
+ body.printing-scrap .sc-consolidated .sc-combined-table td:nth-child(9){text-align:left}
+ body.printing-scrap .sc-consolidated .sc-bottom{margin-top:5px;break-inside:avoid}
+ /* Unit prices already appear beside every item in the main table. */
+ body.printing-scrap .sc-consolidated .sc-bottom tr:nth-child(3){display:none}
+ body.printing-scrap .sc-consolidated .sc-sign{height:80px}
+ body.printing-scrap .sc-consolidated .sc-sign-note{font-size:7pt;margin:3px 0}
+ body.printing-scrap .sc-consolidated .sc-form-code{display:none!important}
+ body.printing-scrap:has(.sc-consolidated),body.printing-scrap:has(.sc-consolidated) .main{background:#fff!important;min-height:0!important}
+}
+@page scrap-application{size:A4 portrait;margin:8mm;@bottom-right{content:'QR34-03-B';font-family:Arial,sans-serif;font-size:8pt;color:#111}}
+@media print{body.printing-scrap .sc-summary-table th:nth-child(12),body.printing-scrap .sc-summary-table td:nth-child(12){min-width:0;width:auto}body.printing-scrap .sc-summary .sc-table td.sc-money{white-space:nowrap;text-align:right}}
+
+
+
+
+/* Application sheet: compact 9-column print form, with a wider reference field and no notes. */
+.sc-application{min-width:calc(850px + 5ch)}
+@media print{
+ body.printing-scrap .sc-consolidated{zoom:.55;break-after:auto}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(1){width:3%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(2){width:16%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(3){width:14%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(4){width:8%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(5){width:3%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(6){width:6%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(7){width:8%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(8){width:34%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(9){width:8%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table td:nth-child(8){text-align:left;overflow-wrap:anywhere}
+}
+
+/* A4 portrait application: narrower columns and compact row heights. */
+@media print{
+ body.printing-scrap .sc-consolidated{zoom:.65;width:153.85%;break-after:auto}
+ body.printing-scrap .sc-consolidated .sc-combined-table{font-size:11pt!important;line-height:1.1}
+ body.printing-scrap .sc-consolidated .sc-bottom{font-size:11pt!important;line-height:1.1}
+ body.printing-scrap .sc-consolidated .sc-table td,body.printing-scrap .sc-consolidated .sc-table th{padding:2px}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(1){width:4%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(2){width:20%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(3){width:6.5%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(4){width:4%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(5){width:4%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(6){width:14%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(7){width:17%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(8){width:20%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(9){width:10.5%!important}
+ body.printing-scrap .sc-consolidated .sc-combined-table td:nth-child(8){text-align:left;overflow-wrap:anywhere}
+ body.printing-scrap .sc-consolidated .sc-sign{height:45px}
+}
+
+/* Reference application: full-width totals, quotation grid and two signature blocks. */
+.sc-consolidated .sc-sheet-head{grid-template-columns:170px minmax(160px,1fr) 240px}.sc-consolidated .sc-sheet-head h2{font-family:"Times New Roman","DFKai-SB",serif}.sc-consolidated .sc-bottom td{overflow-wrap:anywhere}
+@media print{body.printing-scrap .sc-consolidated .sc-sheet-head{grid-template-columns:150px minmax(0,1fr) 220px}body.printing-scrap .sc-consolidated .sc-sheet-head img{width:140px;max-height:45px}body.printing-scrap .sc-consolidated .sc-sheet-head h2{font-size:20pt!important}body.printing-scrap .sc-consolidated .sc-bottom tr:nth-child(3){display:table-row}body.printing-scrap .sc-consolidated .sc-bottom{font-size:9pt!important;line-height:1.1}body.printing-scrap .sc-consolidated .sc-bottom .secondary-note{display:none}body.printing-scrap .sc-consolidated .sc-income-values{height:26px}}
+
+.sc-consolidated .sc-item-totals{width:65%;margin:12px auto 0}@media print{body.printing-scrap .sc-consolidated .sc-item-totals{font-size:8pt!important;margin-top:5px}body.printing-scrap .sc-consolidated .sc-item-totals tr:nth-child(3){display:table-row}}
+
+@media print{
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(1){width:4%!important}
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(2){width:28%!important}
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(3){width:12%!important}
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(4){width:9%!important}
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(5){width:8%!important}
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(6){width:10%!important}
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(7){width:11%!important}
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(8){width:12%!important}
+body.printing-scrap .sc-consolidated .sc-combined-table col:nth-child(9){width:6%!important}
+}

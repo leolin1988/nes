@@ -1,0 +1,5 @@
+#maintenanceEditor .dialog-head{justify-content:flex-start;gap:0}
+#maintenanceEditor .dialog-head .x{margin-left:auto}
+#maintenanceEditor .pm-power-toolbar{width:auto;margin:0 8px;display:inline-flex}
+#maintenanceEditor .dialog-head h2{min-width:0}
+@media(max-width:480px){#maintenanceEditor .dialog-head h2{flex:0 1 auto}#maintenanceEditor .pm-power-toolbar{margin:0 4px}}

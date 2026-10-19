@@ -1,0 +1,77 @@
+{
+  "2": {
+    "titleZh": "防火避難設施自行檢查表",
+    "titleVi": "Bảng tự kiểm tra phương tiện PCCC và thoát nạn",
+    "items": [
+      {
+        "text": "１、□安全門(防火門)之自動關閉器動作正常\n1, Thiết bị tự động đóng của cửa thoát hiểm (cửa chống cháy) hoạt động bình thường\n▓本場所無此設備Khu vực này không có thiết bị này"
+      },
+      {
+        "text": "２、□防火鐵捲門下之空間無障礙物\n2, Không có vật cản tại khu vực bên dưới cửa cuốn thép chống cháy\n▓本場所無此設備\nKhu vực này không có thiết bị này"
+      },
+      {
+        "text": "３、樓梯不得以易燃材料裝修\n3, Cầu thang không được trang trí hoặc hoàn thiện bằng vật liệu dễ cháy\n▓本場所只有1樓無樓梯\nKhu vực này chỉ có tầng 1, không có cầu thang"
+      },
+      {
+        "text": "４、安全門、樓梯、走廊、通道無堆積妨礙避難逃生之物品\n4, Không chất đống vật dụng gây cản trở việc thoát nạn tại cửa thoát hiểm, cầu thang, hành lang và lối đi"
+      },
+      {
+        "text": "５、□安全門無障礙物並保持關閉\n5, Cửa thoát hiểm không có vật cản và luôn được đóng\n▓本場所無此設備\nKhu vực này không có thiết bị này"
+      },
+      {
+        "text": "６、□安全門常關不上鎖\n6, Cửa thoát hiểm luôn đóng nhưng không khóa\n▓本場所無此設備\nKhu vực này không có thiết bị này"
+      },
+      {
+        "text": "７、樓梯間未堆積雜物\n7, Không chất đống đồ vật lộn xộn tại khu vực cầu thang\n▓本場所只有1樓無樓梯\nKhu vực này chỉ có tầng 1, không có cầu thang"
+      },
+      {
+        "text": "８、避難通道有確保必要之寬度\n8, Lối thoát nạn được bảo đảm có chiều rộng cần thiết"
+      },
+      {
+        "text": "９、避難逃生路線圖依規定設在明顯處\n9, Sơ đồ lối thoát hiểm được đặt tại vị trí dễ nhìn thấy theo quy định"
+      }
+    ]
+  },
+  "3": {
+    "titleZh": "消防安全設備自行檢查紀錄表",
+    "titleVi": "Bảng ghi chép tự kiểm tra thiết bị an toàn phòng cháy chữa cháy",
+    "items": [
+      {
+        "name": "滅火器\nBình chữa cháy",
+        "text": "1.放置於固定且便於取用之明顯場所。\n2.安全插梢無脫落或損傷等影響使用之情形。\n3.噴嘴無變形、損傷、老化等影響使用之情形。\n4.壓力指示計之壓力指示值在有效範圍內。\n5.無其他影響滅火器使用之情形（如放置雜物）。\n1. Được đặt cố định tại vị trí dễ nhìn thấy và thuận tiện lấy ra sử dụng.\n2. Chốt an toàn không bị tuột, hư hỏng hoặc có tình trạng khác ảnh hưởng đến việc sử dụng.\n3. Vòi phun không bị biến dạng, hư hỏng, lão hóa hoặc có tình trạng khác ảnh hưởng đến việc sử dụng.\n4. Giá trị hiển thị trên đồng hồ áp suất nằm trong phạm vi hiệu lực.\n5. Không có tình trạng nào khác ảnh hưởng đến việc sử dụng bình chữa cháy (như đặt đồ vật lộn xộn)."
+      },
+      {
+        "name": "室內消防栓\nTrụ chữa cháy trong nhà",
+        "text": "1.消防栓箱門確實關閉，水帶及瞄子之數量正確。\n2.消防栓箱內瞄子及水帶等無變形、損傷等無法使用情形。\n3.紅色幫浦表示燈保持明亮。\n4.無其他明顯影響使用之情形（如放置雜物）。\n1. Cửa tủ chữa cháy được đóng chắc chắn; số lượng vòi chữa cháy và lăng phun chính xác.\n2. Lăng phun, vòi chữa cháy và các thiết bị khác trong tủ chữa cháy không bị biến dạng, hư hỏng hoặc rơi vào tình trạng không thể sử dụng.\n3. Đèn báo màu đỏ của máy bơm luôn sáng rõ.\n4. Không có tình trạng rõ ràng nào khác ảnh hưởng đến việc sử dụng (như đặt đồ vật lộn xộn)."
+      },
+      {
+        "name": "火警自動警報設備\nThiết bị báo cháy tự động",
+        "text": "1.受信總機電壓表在所定之範圍內或電源表示燈保持明亮。\n2.火警探測器無變形、損壞等無法使用之情形。\n1. Đồng hồ điện áp của tủ trung tâm báo cháy nằm trong phạm vi quy định hoặc đèn báo nguồn luôn sáng.\n2.Đầu báo cháy không bị biến dạng, hư hỏng hoặc rơi vào tình trạng không thể sử dụng."
+      },
+      {
+        "name": "火警發信機\nNút nhấn báo cháy",
+        "text": "1.按鈕前之保護板，無破損、變形及損壞等影響使用之情形。\n2.無其他明顯影響使用之情形（如放置雜物）。\n1. Tấm bảo vệ phía trước nút nhấn không bị vỡ, biến dạng, hư hỏng hoặc có tình trạng khác ảnh hưởng đến việc sử dụng.\n2. Không có tình trạng rõ ràng nào khác ảnh hưởng đến việc sử dụng (như đặt đồ vật lộn xộn)."
+      },
+      {
+        "name": "緊急廣播設備\nThiết bị phát thanh khẩn cấp",
+        "text": "實際進行廣播播放測試，確保設備能正常播放。\nTiến hành thử phát thanh thực tế để bảo đảm thiết bị có thể phát bình thường."
+      },
+      {
+        "name": "標示設備\nThiết bị biển chỉ dẫn",
+        "text": "1.無內部裝修，致影響辨識之情形。\n2.無標識脫落、變形、損傷或周圍放置雜物等影響辨別之情形。\n3.燈具之光源有保持明亮，無閃爍等影響辨識之情形。\n1. Không có hạng mục trang trí nội thất gây ảnh hưởng đến khả năng nhận biết.\n2. Biển chỉ dẫn không bị bong rơi, biến dạng, hư hỏng hoặc bị đồ vật xung quanh che khuất, gây ảnh hưởng đến khả năng nhận biết.\n3. Nguồn sáng của đèn luôn sáng rõ, không nhấp nháy hoặc có tình trạng khác ảnh hưởng đến khả năng nhận biết."
+      },
+      {
+        "name": "緊急照明設備\nThiết bị chiếu sáng khẩn cấp",
+        "text": "1、無內部裝修，致影響辨識之情形。\n2、無標識脫落、變形、損傷或周圍放置雜物等影響辨別之情形。\n3、燈具之光源有保持明亮，無閃爍等影響辨識之情形。\n1, Không có hạng mục trang trí nội thất gây ảnh hưởng đến khả năng nhận biết.\n2, Biển chỉ dẫn không bị bong rơi, biến dạng, hư hỏng hoặc bị đồ vật xung quanh che khuất, gây ảnh hưởng đến khả năng nhận biết.\n3, Nguồn sáng của đèn luôn sáng rõ, không nhấp nháy hoặc có tình trạng khác ảnh hưởng đến khả năng nhận biết."
+      },
+      {
+        "name": "排煙設備\nThiết bị hút khói",
+        "text": "1.排煙口有無變形、損傷及因隔間變更而拆除。\n2.啟動裝置無使用上之障礙、標示正常。\n1. Kiểm tra cửa hút khói có bị biến dạng, hư hỏng hoặc bị tháo dỡ do thay đổi vách ngăn hay không.\n2. Thiết bị khởi động không có trở ngại khi sử dụng và biển chỉ dẫn ở trạng thái bình thường."
+      },
+      {
+        "name": "緊急電源\n(發電機)\nNguồn điện khẩn cấp\n(máy phát điện)",
+        "text": "1.切斷常用電源後，確認切換性能正常。\n2.無其他明顯影響使用之情形（如放置雜物）。\n1. Sau khi ngắt nguồn điện thường dùng, xác nhận chức năng chuyển đổi nguồn hoạt động bình thường.\n2. Không có tình trạng rõ ràng nào khác ảnh hưởng đến việc sử dụng (như đặt đồ vật lộn xộn)."
+      }
+    ]
+  }
+}
