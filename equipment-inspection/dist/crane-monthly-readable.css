@@ -1,0 +1,39 @@
+/* QR18-05 only: readable on screen, fixed A4 paper with natural pagination. */
+@media screen {
+ .crane-paper.monthly{width:1200px;font-size:18px;line-height:1.65;padding:30px;zoom:var(--crane-monthly-zoom,1)}
+ .crane-paper.monthly .crane-paper-head h2{font-size:26px;line-height:1.4}
+ .crane-paper.monthly .crane-table th,.crane-paper.monthly .crane-table td{font-size:18px;line-height:1.65;padding:12px 14px}
+ .crane-paper.monthly .secondary-note{font-size:16px!important;line-height:1.6}
+ .crane-paper.monthly .crane-symbol{font-size:24px!important;font-weight:700}
+ .crane-paper.monthly .crane-source-notes{font-size:16px}
+ .crane-monthly-print-help{padding:10px 14px;border-left:4px solid #2876bd;background:#eaf2fa;line-height:1.7}
+}
+@page crane-monthly-a4{size:A4 portrait;margin:10mm}
+@media print {
+ body.printing-crane:has(.crane-paper.monthly) .crane-page>.crane-monthly-print-help{display:none!important}
+ body.printing-crane:has(.crane-paper.monthly) #app,
+ body.printing-crane:has(.crane-paper.monthly) .layout,
+ body.printing-crane:has(.crane-paper.monthly) .main,
+ body.printing-crane:has(.crane-paper.monthly) #content,
+ body.printing-crane:has(.crane-paper.monthly) .crane-page,
+ body.printing-crane:has(.crane-paper.monthly) #craneSheet,
+ body.printing-crane:has(.crane-paper.monthly) .crane-scroll{display:block!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;width:auto!important;max-width:none!important;margin:0!important;padding:0!important;background:#fff!important;box-shadow:none!important;border:0!important}
+ body.printing-crane .crane-paper.monthly{page:crane-monthly-a4;width:190mm!important;max-width:100%!important;margin:0!important;padding:0!important;zoom:1!important;transform:none!important;box-shadow:none!important;color:#000!important;font-size:11pt!important;line-height:1.4!important;break-inside:auto}
+ body.printing-crane .crane-paper.monthly .crane-paper-head{break-inside:avoid;break-after:avoid}
+ body.printing-crane .crane-paper.monthly .crane-paper-head h2{font-size:16pt!important;line-height:1.3}
+ body.printing-crane .crane-paper.monthly .crane-paper-head img{width:25mm;height:auto}
+ body.printing-crane .crane-paper.monthly .crane-table{width:100%!important;min-width:0!important;table-layout:fixed;break-inside:auto}
+ body.printing-crane .crane-paper.monthly .crane-table th,
+ body.printing-crane .crane-paper.monthly .crane-table td{font-size:11pt!important;line-height:1.4!important;padding:2mm;max-width:none;overflow-wrap:anywhere}
+ body.printing-crane .crane-paper.monthly .secondary-note{font-size:9pt!important;line-height:1.35!important;color:#333!important}
+ body.printing-crane .crane-paper.monthly .crane-symbol{font-size:14pt!important}
+ body.printing-crane .crane-paper.monthly .crane-table thead{display:table-header-group}
+ body.printing-crane .crane-paper.monthly .crane-table tr{break-inside:avoid;page-break-inside:avoid}
+ body.printing-crane .crane-paper.monthly .reference-photo-button{max-width:100%;padding:0;break-inside:avoid}
+ body.printing-crane .crane-paper.monthly .reference-photo-button img{width:auto!important;height:auto!important;max-width:100%!important;max-height:45mm!important;object-fit:contain}
+ body.printing-crane .crane-paper.monthly .reference-photo-button>span{display:none}
+ body.printing-crane .crane-paper.monthly .crane-hazards section{min-height:22mm;padding:2mm;break-inside:avoid}
+ body.printing-crane .crane-paper.monthly .crane-bottom{break-inside:avoid}
+ body.printing-crane .crane-paper.monthly .crane-bottom>div{padding:2mm}
+ body.printing-crane .crane-paper.monthly footer{font-size:9pt;text-align:right;break-before:avoid}
+}
