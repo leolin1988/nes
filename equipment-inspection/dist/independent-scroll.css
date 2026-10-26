@@ -1,0 +1,37 @@
+/* Keep the application header and both scroll areas inside the viewport.
+   Screen-only rules leave existing form-specific printing unchanged. */
+@media screen {
+ html,body{width:100%;height:100%;margin:0;overflow:hidden}
+ #app{display:flex;flex-direction:column;height:100vh;height:100dvh;min-height:0;overflow:hidden}
+ #app>#connectivityBanner{flex:0 0 auto;position:relative;top:auto}
+ #app>.topbar{flex:0 0 auto;min-height:90px;height:auto;max-height:45vh;max-height:45dvh;overflow-y:auto;overscroll-behavior:contain;background:#0d3b66!important;color:#fff!important;border-bottom:3px solid #83bddb;box-shadow:0 2px 8px #102b4220;z-index:10}
+ .topbar .brand{font-size:25px!important;font-weight:800;line-height:1.4;color:#fff!important}
+ .topbar .secondary-note{color:#e0edf7!important}
+ .topbar .top-actions label{color:#fff}
+ #app>.layout{flex:1 1 0%;display:grid!important;grid-template-columns:300px minmax(0,1fr);grid-template-rows:minmax(0,1fr);min-height:0!important;min-width:0;overflow:hidden}
+ #app>.layout>.side,#app>.layout>.main{height:100%;max-height:100%;min-height:0!important;min-width:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;align-self:stretch!important;margin:0}
+ #app>.layout>.side{display:block!important;grid-column:1;grid-row:1;overflow-x:hidden;max-width:none;background:#f4f7f6!important;color:#203047;border-right:2px solid #b6c9d9!important;padding-bottom:32px}
+ #app>.layout>.main{max-width:none;overflow-x:auto;background:#fff!important;color:#203047}
+ .side .nav{width:100%;white-space:normal}
+ .side .nav-section-title{color:#0d3b66!important}
+ .side .nav.active{background:#0d3b66!important;color:#fff!important}
+ .side .nav.active .secondary-note{color:#e0edf7!important}
+ .side:focus-visible,.main:focus-visible{outline:2px solid #247ab7;outline-offset:-2px}
+ .sidebar-resize-handle{height:100%;min-height:0!important;overflow:hidden}
+ @media(min-width:901px){
+  #app>.layout.sidebar-resizable{grid-template-columns:var(--sidebar-width,340px) 10px minmax(0,1fr)}
+  #app>.layout.sidebar-resizable>.main{grid-column:3;grid-row:1}
+ }
+ @media(max-width:900px){
+  #app>.layout{grid-template-columns:230px minmax(0,1fr)}
+  #app>.layout>.main{grid-column:2;grid-row:1}
+ }
+ @media(max-width:600px){
+  #app>.layout{grid-template-columns:150px minmax(0,1fr)}
+  #app>.layout>.side{padding:8px 5px 24px}
+  .side .nav{padding:9px 7px;font-size:13px}
+  .side .nav-section-title{padding-inline:7px;font-size:14px}
+  #app>.layout>.main{padding:14px 12px}
+  #app>.topbar{padding:12px 14px}
+ }
+}
