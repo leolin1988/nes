@@ -19,9 +19,16 @@ export async function managementAction(body:any,user:any,client:any,reply:any,au
   const reviewer=clean(body.reviewer_name,100),note=clean(body.review_note,2000);
   if(!reviewer||!note||body.review_confirmed!==true||typeof body.approve!=='boolean')return reply({error:'review_required'},400);
   const update={approval_status:body.approve?'approved':'rejected',reviewer_name:reviewer,review_note:note,reviewed_by:user.id,reviewed_at:new Date().toISOString()};
-  let approval=client.from('inspection_records').update(update).eq('id',r.id).eq('approval_status','pending').eq('is_draft',false);
-  if(body.normal_only===true)approval=approval.eq('overall_status','normal').eq('answers',JSON.stringify(r.answers));
-  const saved=await checked(approval.select('id'));
+  // Exact-answer compare-and-set stays in a POST body, not an oversized URL.
+  let saved;
+  if(body.normal_only===true){
+   saved=await checked(client.rpc('approve_qualified_inspection',{
+    p_id:r.id,p_country:r.country_code,p_answers:r.answers,
+    p_reviewer:reviewer,p_note:note,p_account:user.id
+   }));
+  }else{
+   saved=await checked(client.from('inspection_records').update(update).eq('id',r.id).eq('approval_status','pending').eq('is_draft',false).select('id'));
+  }
   if(!saved?.length)return reply({error:'already_reviewed'},409);
   await audit(client,user.id,'record_'+update.approval_status,r.id,{reviewer_name:reviewer,review_note:note});return reply({success:1});
  }
@@ -87,6 +94,4 @@ export async function managementAction(body:any,user:any,client:any,reply:any,au
  }
  return null;
 }
-
-
 

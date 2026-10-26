@@ -15,7 +15,9 @@ bulkNoEligible:['目前沒有可一鍵簽核的紀錄。需為已送出的待簽
 bulkConfirmCount:['確認簽核 {count} 筆合格紀錄','Confirm approval of {count} qualified records','Confirmar {count} registros conformes','Xác nhận duyệt {count} bản ghi đạt'],
 bulkReviewerRequired:['請輸入簽核人姓名。','Enter the reviewer name.','Ingrese el nombre del revisor.','Nhập tên người duyệt.'],
 bulkNoteRequired:['請填寫簽核說明。','Enter an approval note.','Ingrese una nota de aprobación.','Nhập ghi chú phê duyệt.'],
-bulkCheckRequired:['請先勾選確認，系統才會執行簽核。','Check the confirmation box before approving.','Marque la casilla de confirmación antes de aprobar.','Đánh dấu ô xác nhận trước khi duyệt.']
+bulkCheckRequired:['請先勾選確認，系統才會執行簽核。','Check the confirmation box before approving.','Marque la casilla de confirmación antes de aprobar.','Đánh dấu ô xác nhận trước khi duyệt.'],
+bulkSessionRequired:['登入狀態已失效，請重新登入後重試；本次尚未送出簽核。','Session expired. Sign in again; no approvals were sent.','Sesión caducada. Inicie sesión; no se enviaron aprobaciones.','Phiên đã hết hạn. Đăng nhập lại; chưa gửi phê duyệt.'],
+bulkServerDenied:['伺服器拒絕簽核請求，請重新整理後重試；若仍失敗，請提供下列紀錄編號。','Server rejected the approval. Refresh and retry; if it persists, provide the record ID below.','El servidor rechazó la aprobación. Actualice; si persiste, facilite el ID.','Máy chủ từ chối phê duyệt. Tải lại; nếu vẫn lỗi, cung cấp mã bản ghi.']
 };for(const[k,v]of Object.entries(labels))translations[k]=Object.fromEntries(['zh','en','es','vi'].map((l,i)=>[l,v[i]]));
 function qualifiedRecords(){const ids=new Set(filteredEquipment().filter(e=>!e.archived_at&&accessCan(e.department_id,'daily','approve')).map(e=>e.id));return data.records.filter(r=>ids.has(r.equipment_id)&&r.approval_status==='pending'&&!r.is_draft&&r.overall_status==='normal'&&Array.isArray(r.answers)&&r.answers.length&&r.answers.every(a=>a?.value==='normal'));}
 const singleRender=renderApprovals;
@@ -39,10 +41,13 @@ function openBulkReview(records){
   running=true;modal.querySelectorAll('button,input,textarea').forEach(e=>e.disabled=true);let done=0,failed=0,processed=0,lastError='';
   // Keep country switching blocked throughout the whole batch, including gaps between requests.
   countryBusy++;
-  try{for(const r of records){
+  try{
+   try{const session=await api({action:'session'});if(session.profile?.account_id!==account)throw Error('auth');}
+   catch(error){failed=records.length;lastError=t('bulkSessionRequired');return;}
+   for(const r of records){
    if(country!==activeCountry||generation!==countryGeneration||account!==profile?.account_id){failed+=records.length-processed;break;}
    try{await api({action:'record_approve',id:r.id,approve:true,normal_only:true,reviewer_name:name,review_note:note,review_confirmed:true});r.approval_status='approved';done++;}
-   catch(error){lastError=['already_reviewed','not_qualified'].includes(error.message)?t('bulkChanged'):t(error.message==='forbidden'?'accessDenied':error.message==='review_required'?'reviewRequired':'error');failed++;if(!['already_reviewed','not_qualified'].includes(error.message)){failed+=records.length-processed-1;processed++;break;}}
+   catch(error){lastError=['already_reviewed','not_qualified'].includes(error.message)?t('bulkChanged'):t(error.message==='forbidden'?'accessDenied':error.message==='review_required'?'reviewRequired':'bulkServerDenied');lastError+=' ['+r.id+']';failed++;if(!['already_reviewed','not_qualified'].includes(error.message)){failed+=records.length-processed-1;processed++;break;}}
    processed++;status.textContent=t('bulkProgress')+' '+processed+' / '+records.length;
   }}finally{countryBusy--;running=false;localStorage.setItem('inspection_reviewer_name',name);modal.querySelectorAll('button').forEach(e=>e.disabled=false);confirmButton.disabled=true;status.textContent=t('bulkDone')+'：'+done+'；'+t('bulkRemaining')+'：'+failed+(lastError?' — '+lastError:'');if(view==='approval'&&country===activeCountry)renderContent();}
  };
