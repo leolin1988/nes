@@ -1,0 +1,12 @@
+/* Color-coded category headings; existing menu behavior and scroll areas stay intact. */
+@media screen {
+ #app .side .nav-section{--section-bg:#e2f2f1;--section-ink:#155b58;--section-accent:#287f79}
+ #app .side .nav-section[data-section="field"]{--section-bg:#e5effb;--section-ink:#174b80;--section-accent:#2876bd}
+ #app .side .nav-section[data-section="custom_ehs"]{--section-bg:#e2f3e9;--section-ink:#1a603d;--section-accent:#2c8b58}
+ #app .side .nav-section[data-section="supervisor"]{--section-bg:#fff0d8;--section-ink:#805010;--section-accent:#b5791c}
+ #app .side .nav-section[data-section="backoffice"]{--section-bg:#eee7f8;--section-ink:#60408a;--section-accent:#8159b4}
+ #app .side .nav-section>.nav-section-title{background:var(--section-bg)!important;color:var(--section-ink)!important;border-left:4px solid var(--section-accent);border-radius:8px;padding:12px 10px;margin-bottom:5px!important}
+ #app .side .nav-section>.nav-section-title .secondary-note{color:var(--section-ink)!important}
+ #app .side .nav-section>.nav-section-title:hover{filter:brightness(.97)}
+ #app .side .nav-section>.nav-section-title:focus-visible{outline:3px solid var(--section-accent);outline-offset:2px}
+}
